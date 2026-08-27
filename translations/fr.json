@@ -10,9 +10,9 @@
     "start_over": "Recommencer"
   },
   "app": {
-    "human_name": "Matrix Authentication Service",
-    "name": "matrix-authentication-service",
-    "technical_description": "Document de découverte OpenID Connect : <a class=\"cpd-link\" data-kind=\"primary\" href=\"%(discovery_url)s\">%(discovery_url)s</a>"
+    "human_name": "Conv",
+    "name": "Conv",
+    "technical_description": "Conv utilise un service d'authentification robuste et standardisé pour sécuriser davantage vos échanges."
   },
   "branding": {
     "privacy_policy": {
@@ -69,7 +69,7 @@
     "consent": {
       "continue_to": "Continuer vers <span>%(client_name)s</span>?",
       "scope_list_preface": "En continuant, vous autorisez <span>%(client_name)s</span> à :",
-      "this_will_setup": "Continuer connectera %(client_name)s (<span>%(client_uri)s</span>) avec votre compte %(server_name)s<span></span>.",
+      "this_will_setup": "Continuer vous connectera sur %(client_name)s (<span>%(client_uri)s</span>) avec votre compte : <span></span>",
       "use_another_account": "Utiliser un autre compte"
     },
     "device_card": {
@@ -152,9 +152,9 @@
     "login": {
       "call_to_register": "Vous n’avez pas encore de compte ?",
       "continue_with_provider": "Poursuivre avec %(provider)s",
-      "description": "Veuillez vous connecter pour continuer :",
+      "description": "La messagerie instantanée de SIDRA Nation.",
       "forgot_password": "Mot de passe oublié ?",
-      "headline": "Se connecter",
+      "headline": "SIDRA Nation Conv",
       "link": {
         "description": "Associer votre compte <span class=\"break-keep text-links\">%(provider)s</span>",
         "headline": "Se connecter pour associer"

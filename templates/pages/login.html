@@ -11,10 +11,10 @@ Please see LICENSE files in the repository root for full details.
 {% from "components/idp_brand.html" import logo %}
 
 {% block content %}
-  <form method="POST" class="flex flex-col gap-10">
+  <form method="POST" class="flex flex-col gap-10 tuile-blanche">
     <header class="page-heading">
-      <div class="icon">
-        {{ icon.user_profile_solid() }}
+      <div>
+        <img src="/assets/logo.png" alt="Conv">
       </div>
 
       {% if next and next.kind == "link_upstream" %}
