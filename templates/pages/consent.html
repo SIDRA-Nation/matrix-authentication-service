@@ -11,19 +11,14 @@ Please see LICENSE files in the repository root for full details.
 {% extends "base.html" %}
 
 {% block content %}
+  <div class="sm:mx-auto sm:w-full sm:max-w-md mt-8 tuile-blanche">
   {% set client_display_name = client.client_name or client.client_id %}
   {# The URI we can display to distinguish this client #}
   {% set client_display_uri = ((client.client_uri or "") | simplify_url) or "<no client_uri provided>" %}
 
   <header class="page-heading">
     <div class="flex justify-center">
-      {% if client.logo_uri %}
-      <img class="consent-client-icon image" referrerpolicy="no-referrer" src="{{ client.logo_uri }}" />
-      {% else %}
-      <div class="consent-client-icon generic">
-        {{ icon.web_browser() }}
-      </div>
-      {% endif %}
+      <img src="/assets/logo.png" alt="Conv">
     </div>
 
     <div class="header">
@@ -85,4 +80,5 @@ Please see LICENSE files in the repository root for full details.
       params=dict(error="access_denied", state=grant.state)
     ) }}
   </section>
+  </div>
 {% endblock content %}

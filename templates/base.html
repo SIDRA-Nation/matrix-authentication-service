@@ -24,6 +24,117 @@ Please see LICENSE files in the repository root for full details.
     <meta charset="utf-8">
     <title>{% block title %}{{ _("app.name") }}{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    <style>
+        /* --- THÈME GLOBAL --- */
+        :root, body, html {
+            --cpd-color-bg-canvas-default: #0d1641 !important;
+            --cpd-color-bg-surface-default: transparent !important; 
+            --cpd-color-bg-canvas-subtle: #0d1641 !important;
+            background-color: #0d1641 !important;
+            color: #ffffff !important; 
+        }
+        
+        body > div:not(.tuile-blanche), main, section, [class*="bg-white"], [class*="bg-gray-"] {
+            background-color: transparent !important;
+        }
+
+        h1, h2, h3, h4, p, span, label {
+            color: #ffffff !important;
+        }
+
+        /* --- TUILE BLANCHE --- */
+        .tuile-blanche {
+            background-color: #ffffff !important;
+            border-radius: 1rem !important;
+            padding: 2.5rem 2rem !important;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+        }
+
+        .tuile-blanche, 
+        .tuile-blanche h1, 
+        .tuile-blanche h2, 
+        .tuile-blanche p, 
+        .tuile-blanche label, 
+        .tuile-blanche div,
+        .tuile-blanche span {
+            color: #111827 !important;
+        }
+        
+        .tuile-blanche .avatar-placeholder {
+            color: #ffffff !important;
+        }
+
+        .tuile-blanche h1 {
+            display: block !important;
+            text-align: center !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .tuile-blanche img {
+            max-height: 5rem !important; 
+            width: auto !important; 
+            margin: 0 auto !important; 
+            display: block !important;
+            background-color: transparent !important; 
+        }
+
+        .tuile-blanche a {
+            color: #2563eb !important;
+            background-color: transparent !important;
+        }
+        .tuile-blanche a:hover {
+            background-color: transparent !important;
+            text-decoration: underline !important;
+        }
+
+        .tuile-blanche input {
+            background-color: #f9fafb !important;
+            color: #111827 !important;
+            border: 1px solid #d1d5db !important;
+        }
+
+        /* --- BOUTONS ET EFFETS DE SURVOL --- */
+        .tuile-blanche form button, 
+        .tuile-blanche button.primary {
+            background-color: #0d1641 !important;
+            color: #ffffff !important;
+            border: none !important;
+            transition: background-color 0.2s ease !important;
+            cursor: pointer !important;
+        }
+        .tuile-blanche form button:hover, 
+        .tuile-blanche button.primary:hover {
+            background-color: #1a2b7a !important; 
+        }
+
+        /* Bouton Autre compte */
+        .tuile-blanche button[data-kind="secondary"] {
+            background-color: #f3f4f6 !important;
+            color: #111827 !important;
+            transition: background-color 0.2s ease !important;
+            cursor: pointer !important;
+        }
+        .tuile-blanche button[data-kind="secondary"]:hover {
+            background-color: #e5e7eb !important; 
+        }
+
+        /* --- ESPACEMENTS --- */
+        .tuile-blanche section.flex.flex-col.gap-6 {
+            gap: 0.75rem !important; 
+        }
+
+        .tuile-blanche section + section {
+            margin-top: 1.5rem !important; 
+        }
+        
+        .tuile-blanche form.cpd-form-root {
+            margin-bottom: 0 !important;
+        }
+        .tuile-blanche section.items-center {
+            margin-top: 1.5rem !important;
+        }
+    </style>
     {{ include_asset('src/entrypoints/vendor.css') | indent(4) | safe }}
     {{ include_asset('src/entrypoints/shared.css') | indent(4) | safe }}
     {{ include_asset('src/entrypoints/templates.css') | indent(4) | safe }}
