@@ -69,7 +69,7 @@
     "consent": {
       "continue_to": "Continuer vers <span>%(client_name)s</span>?",
       "scope_list_preface": "En continuant, vous autorisez <span>%(client_name)s</span> à :",
-      "this_will_setup": "Continuer vous connectera sur %(client_name)s (<span>%(client_uri)s</span>) avec votre compte : <span></span>",
+      "this_will_setup": "Continuer vous connectera sur %(client_name)s avec votre compte : <span></span>",
       "use_another_account": "Utiliser un autre compte"
     },
     "device_card": {
