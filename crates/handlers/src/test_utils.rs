@@ -7,6 +7,7 @@
 
 use std::{
     convert::Infallible,
+    future::ready,
     net::IpAddr,
     sync::{Arc, Mutex, RwLock},
     task::{Context, Poll},
@@ -468,7 +469,7 @@ impl TestState {
     /// Panics if the RNG is already locked.
     pub fn rng(&self) -> ChaChaRng {
         let mut parent_rng = self.rng.try_lock().expect("Failed to lock RNG");
-        ChaChaRng::from_rng(&mut *parent_rng).unwrap()
+        ChaChaRng::from_rng(&mut *parent_rng)
     }
 
     /// Do a call to the userinfo endpoint to check if the given token is valid.
@@ -545,7 +546,7 @@ impl graphql::State for TestGraphQLState {
 
     fn rng(&self) -> BoxRng {
         let mut parent_rng = self.rng.lock().expect("Failed to lock RNG");
-        let rng = ChaChaRng::from_rng(&mut *parent_rng).expect("Failed to seed RNG");
+        let rng = ChaChaRng::from_rng(&mut *parent_rng);
         Box::new(rng)
     }
 }
@@ -655,35 +656,37 @@ impl FromRef<TestState> for AppVersion {
 impl FromRequestParts<TestState> for ActivityTracker {
     type Rejection = Infallible;
 
-    async fn from_request_parts(
+    fn from_request_parts(
         _parts: &mut axum::http::request::Parts,
         state: &TestState,
-    ) -> Result<Self, Self::Rejection> {
-        Ok(state.activity_tracker.clone())
+    ) -> impl Future<Output = Result<Self, Self::Rejection>> + Send {
+        ready(Ok(state.activity_tracker.clone()))
     }
 }
 
 impl FromRequestParts<TestState> for BoxClock {
     type Rejection = Infallible;
 
-    async fn from_request_parts(
+    fn from_request_parts(
         _parts: &mut axum::http::request::Parts,
         state: &TestState,
-    ) -> Result<Self, Self::Rejection> {
-        Ok(Box::new(state.clock.clone()))
+    ) -> impl Future<Output = Result<Self, Self::Rejection>> + Send {
+        let clock: Self = Box::new(state.clock.clone());
+        ready(Ok(clock))
     }
 }
 
 impl FromRequestParts<TestState> for BoxRng {
     type Rejection = Infallible;
 
-    async fn from_request_parts(
+    fn from_request_parts(
         _parts: &mut axum::http::request::Parts,
         state: &TestState,
-    ) -> Result<Self, Self::Rejection> {
+    ) -> impl Future<Output = Result<Self, Self::Rejection>> + Send {
         let mut parent_rng = state.rng.lock().expect("Failed to lock RNG");
-        let rng = ChaChaRng::from_rng(&mut *parent_rng).expect("Failed to seed RNG");
-        Ok(Box::new(rng))
+        let rng = ChaChaRng::from_rng(&mut *parent_rng);
+        let rng: Self = Box::new(rng);
+        ready(Ok(rng))
     }
 }
 
